@@ -1,5 +1,5 @@
 #Project tech2 EPITECH MONTPELLIER 2018
-# -ASM_minilibc_2018
+# ASM_minilibc_2018
 the goal of this project is to create some functions of library C in Asm.
 
 Utilities :
