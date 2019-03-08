@@ -19,6 +19,11 @@ memmove:
    mov rbp, rsp
    mov rax, 0
 
+   push r12
+   push r13
+   push r14
+   push r15
+
    mov r12, 0 ;tmp rsi
    mov r13, 0 ;tmp rdi
    mov r14, 0 ;conteur n
@@ -53,6 +58,10 @@ pull_rdi:
 
 
 end_memmove:
+   pop r12
+   pop r13
+   pop r14
+   pop r15
    mov rax, rdi
    leave
    ret
