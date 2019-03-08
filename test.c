@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2017
-** Camille MONJO
+** Maxime Aiguier
 ** File description:
 ** Header file
 */
