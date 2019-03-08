@@ -73,6 +73,10 @@ strstr:
     ; rdi s1
     ; rsi s2
     mov rdx, 0 ;n
+    cmp byte[rdi], 0
+    je empty
+    cmp byte[rsi], 0
+    je empty
     jmp my_call_strlen
 
 my_call_strlen:
@@ -97,6 +101,9 @@ my_for_strstr:
     inc rdi
     jmp my_for_strstr
 
+empty:
+    leave
+    ret
 end_strstr_win:
     mov rax, rdi
 	leave
