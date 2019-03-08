@@ -32,51 +32,25 @@ memmove:
 
 push_rsi:
    cmp r14, rdx
-   jge reset_compteur
-   mov r12b, [rsi + r15]
+   je reset_compteur
+   mov r12b, byte[rsi + r15]
    push r12
    inc r14
    inc r15
    jmp push_rsi
 
 reset_compteur:
-   mov r14, 0
-   mov r15, 0
+    dec r15
 
 pull_rdi:
-   cmp r14, rdx
-   jge reset_2
+   cmp r14, 0
+   je end_memmove
    pop r13
-   mov [rdi + r15], r13b
-   inc r15
-   inc r14
+   mov byte[rdi + r15], r13b
+   dec r15
+   dec r14
    jmp pull_rdi
 
-reset_2:
-   mov r14, 0
-   mov r15, 0
-
-revert_push:
-   cmp r14, rdx
-   jge reset_3
-   mov r13b, [rdi + r15]
-   inc r15
-   push r13
-   inc r14
-   jmp revert_push
-
-reset_3:
-   mov r14, 0
-   mov r15, 0
-
-revert_pull:
-   pop r13
-   mov [rdi + r15], r13b
-   inc r14
-   cmp r14, rdx
-   jge end_memmove
-   inc r15
-   jmp revert_pull
 
 end_memmove:
    mov rax, rdi
