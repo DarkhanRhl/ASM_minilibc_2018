@@ -41,6 +41,10 @@ strpbrk:
 
     mov rax, 0
     mov rdx, 0
+    cmp rdi, 0
+    je end_null
+    cmp rsi, 0
+    je end_null
 
 invert_rdi_rsi:
     mov rdx, rsi
@@ -50,8 +54,8 @@ invert_rdi_rsi:
 
 my_for_strpbrk:
 
-    cmp rsi, 0
-    je end
+    cmp byte[rsi], 0
+    je end_null
 
     push rdi
     push rsi
@@ -67,6 +71,11 @@ my_for_strpbrk:
 
     inc rsi
     jmp my_for_strpbrk
+
+end_null:
+    mov rax, 0
+    leave
+    ret
 
 end:
     mov rax, rsi
